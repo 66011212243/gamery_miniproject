@@ -1,0 +1,25 @@
+<div class="profile-section" *ngIf="user">
+    <div class="profile-card">
+        <img [src]="'http://localhost:3000/uploads/' + user.image" alt="profile" />
+        <div class="detall" style="margin-top: 70px;">
+            <h2>{{user.username}}</h2>
+            <p>อีเมล : {{user.email}}</p>
+            <a [routerLink]="['edit-profile-user',user.user_id]">แก้ไขโปรไฟล์</a>
+
+        </div>
+
+        <div class="wallet" style="margin-left:20%">
+            <p><b>Wallet</b></p>
+            <p>ยอดเงินคงเหลือ</p>
+            <b>฿390</b>
+        </div>
+        <div class="example-button-row">
+            <button mat-stroked-button style="color: #6e8cfb; border-color: #6e8cfb">
+                <mat-icon>account_balance_wallet</mat-icon> เติมเงิน
+            </button>
+            <button matButton="elevated" style="background-color: #6e8cfb; color: aliceblue" (click)="logout()">
+                <mat-icon>logout</mat-icon> ออกจากระบบ
+            </button>
+        </div>
+    </div>
+</div>

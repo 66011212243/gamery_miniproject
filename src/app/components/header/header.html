@@ -1,0 +1,73 @@
+<div>
+    <div class="headerTab">
+        <div class="btw-header">
+            <div class="locoCenter">
+                <div class="loco">
+                    <img src="assets/images/loco.png" alt="images" style="width: 13%;">
+                    <div class="textCenter">
+                        <div class="Gamery">
+                            Gamery
+                        </div>
+                        <div>
+                            <h2>บริการขายเกม</h2>
+                        </div>
+                    </div>
+
+                    <ng-container *ngIf="currentUser?.status === 1; else userHeader">
+                        <div class="homepage">
+                            <a [routerLink]="['homepage-admin']">
+                                หน้าแรก
+                            </a>
+                        </div>
+                        <div class="game">
+                            <a href="/">
+                                สร้างเกม
+                            </a>
+                        </div>
+                        <div class="game">
+                            <a href="/">
+                                โค้ดส่วนลด
+                            </a>
+                        </div>
+                        <div class="game">
+                            <a href="/">
+                                ผู้ใช้
+                            </a>
+                        </div>
+                    </ng-container>
+
+                    <ng-template #userHeader>
+                        <div class="homepage">
+                            <a [routerLink]="['homepage-user']">
+                                หน้าแรก
+                            </a>
+                        </div>
+                        <div class="game">
+                            <a href="/">
+                                คลังเกม
+                            </a>
+                        </div>
+                    </ng-template>
+
+                </div>
+
+            </div>
+
+            <div class="profile">
+
+                <form action="">
+                    <mat-label></mat-label>
+                    <input matInput class="find">
+                </form>
+
+                <div class="iconCenter">
+                    <mat-icon fontIcon="shopping_cart"></mat-icon>
+                </div>
+                <div class="img-Input" (click)="goToProfile()" >
+                    <img [src]="'http://localhost:3000/uploads/' + user?.image" alt="">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

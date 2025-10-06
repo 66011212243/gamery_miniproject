@@ -1,0 +1,78 @@
+<head>
+    <style>
+        .columnCenter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 5%;
+        }
+
+        .example-card {
+            width: 450px;
+            height: 560px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .Gamery {
+            color: #6E8CFB;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 2%;
+        }
+        .bt-login button {
+            border-radius: 5px;
+            width: 340px;
+            background-color: #6E8CFB;
+            margin-top: 3%;
+        }
+        a{
+            text-decoration: none;
+            color: #6E8CFB;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="columnCenter">
+            <mat-card class="example-card mat-elevation-z24" appearance="outlined">
+                <div class="columnCenter">
+                    <img src="assets/images/loco.png" alt="images" style="width: 20%;">
+                    <div class="Gamery">
+                        Gamery
+                    </div>
+                    <p style="margin-top: 5%;">เข้าสู่ระบบ</p>
+
+                    <div style="margin-top: -10px;">
+                        <p >อีเมล</p>
+                        <div>
+                            <mat-form-field appearance="outline" style="width: 340px;">
+                                <mat-label>กรุณากรอกอีเมล</mat-label>
+                                <input matInput [(ngModel)]="email">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div style="margin-top: -10px;">
+                        <p>รหัสผ่าน</p>
+                        <div>
+                            <mat-form-field appearance="outline" style="width: 340px;">
+                                <mat-label>กรุณากรอกรหัสผ่าน</mat-label>
+                                <input matInput type="password" [(ngModel)]= "password">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="bt-login">
+                        <button matButton="filled" (click)="login()" >เข้าสู่ระบบ</button>
+                        
+                    </div>
+                    <p>ยังไม่มีบัญชีใช่ไหม? 
+                        <span> <a [routerLink] = "['/register-page']">ลงทะเบียน</a></span>
+                    </p>
+                    
+                </div>
+
+            </mat-card>
+        </div>
+
+    </div>
+</body>

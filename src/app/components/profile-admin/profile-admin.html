@@ -1,0 +1,17 @@
+<div class="profile-section" *ngIf="user">
+    <div class="profile-card">
+        <img [src]="'http://localhost:3000/uploads/' + user.image" alt="profile" />
+        <div class="detall">
+            <h2>{{user.username}}</h2>
+            <p>อีเมล : {{user.email}}</p>
+            <a [routerLink]="['edit-profile-admin',user.user_id]">แก้ไขโปรไฟล์</a>
+        </div>
+
+        <div class="example-button-center">
+            <button matButton="elevated" style="background-color: #6e8cfb; color: aliceblue; margin-top: 50px;" (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                ออกจากระบบ
+            </button>
+        </div>
+    </div>
+</div>

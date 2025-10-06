@@ -1,0 +1,40 @@
+<div class="profile-section">
+    <div class="profile-card">
+        <img *ngIf="preview; else currentImage" [src]="preview" alt="Preview Image" width="150">
+
+        <!-- ถ้ายังไม่มี preview ให้โชว์รูปปัจจุบัน -->
+        <ng-template #currentImage>
+            <img *ngIf="user?.image" [src]="'http://localhost:3000/uploads/' + user?.image"
+                alt="Current Profile Image" width="150">
+        </ng-template>
+        <div class="profile-edit" style="max-width: 500px; margin: 70px auto;">
+            <!-- ฟิลด์รูปโปรไฟล์ (URL) -->
+            <div class="example-button-roww" style="margin-bottom: 5%;" (click)="fileInput.click()">
+                <button matButton="elevated" style="background-color: #6e8cfb; color: aliceblue">
+                    <mat-icon>edit</mat-icon> แก้ไขโปรไฟล์
+                    <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+                </button>
+            </div>
+
+            <div style="margin: 6%;">
+                <h2>แก้ไขโปรไฟล์</h2>
+            </div>
+
+
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>ชื่อ</mat-label>
+                <input matInput [(ngModel)]="username">
+            </mat-form-field>
+
+            <div class="example-button-row">
+                <button mat-stroked-button style="color: #6e8cfb; border-color: #6e8cfb" (click)="cancle()">
+                    <mat-icon>cancel</mat-icon> ยกเลิก
+                </button>
+                <button matButton="elevated" style="background-color: #6e8cfb; color: aliceblue" (click)="saveProfile()">
+                    <mat-icon>save</mat-icon> บันทึก
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
