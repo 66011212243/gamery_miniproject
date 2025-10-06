@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=production --output-path=dist",
+    "build": "ng build mini_project --configuration=production --output-path=dist/mini_project",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
