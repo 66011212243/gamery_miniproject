@@ -49,7 +49,6 @@ export class RegisterPage {
   formData.append('email', this.email);
   formData.append('password', this.password);
   formData.append('image', this.image!);
-  formData.append('status', this.status);
 
   const user = await this.userService.register(formData);
   
