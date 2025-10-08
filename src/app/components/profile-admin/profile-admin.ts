@@ -12,7 +12,7 @@ import { UserGetRes } from '../../model/user_get_res';
 
 @Component({
   selector: 'app-profile-admin',
-  imports: [MatCardModule,MatButtonModule,MatIconModule, RouterModule,CommonModule],
+  imports: [CommonModule,MatCardModule,MatButtonModule,MatIconModule, RouterModule,],
   templateUrl: './profile-admin.html',
   styleUrl: './profile-admin.scss'
 })

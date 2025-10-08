@@ -11,7 +11,7 @@ import { UserGetRes } from '../../model/user_get_res';
 
 @Component({
   selector: 'app-profile-user',
-  imports: [MatCardModule,MatButtonModule,MatIconModule,RouterModule,CommonModule],
+  imports: [CommonModule,MatCardModule,MatButtonModule,MatIconModule,RouterModule,],
   templateUrl: './profile-user.html',
   styleUrl: './profile-user.scss'
 })
