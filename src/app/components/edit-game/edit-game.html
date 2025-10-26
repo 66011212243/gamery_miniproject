@@ -1,0 +1,55 @@
+<div class="header">
+    <button class="back-btn">← กลับ</button>
+</div>
+<div class="container">
+    <div>
+        <div class="cart-item">
+            <div class="left-section">
+                <div class="photo" (click)="fileInput.click()">
+                    <img *ngIf="preview; else currentImage" [src]="preview" alt="Preview Image" class="preview-img">
+                    <ng-template #currentImage>
+                        <img *ngIf="game[0].image" [src]=" apiUrl +'/uploads/'  + game[0].image"
+                            alt="Current Profile Image" class="preview-img">
+                    </ng-template>
+                    <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+                </div>
+            </div>
+
+            <div class="right-section">
+                <mat-form-field appearance="outline" style="width: 550px">
+                    <mat-label>ชื่อเกม</mat-label>
+                    <input matInput [(ngModel)]="name" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" style="width: 550px">
+                    <mat-label>ประเภทเกม</mat-label>
+                    <mat-select [(ngModel)]="type_id">
+                        <mat-option *ngFor="let typeGame of this.type_games" [value]="typeGame.value">
+                            {{typeGame.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" style="width: 550px">
+                    <mat-label>รายละเอียด....</mat-label>
+                    <textarea matInput style="height: 100px" [(ngModel)]="description"></textarea>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" style="width: 550px">
+                    <mat-label>ราคา</mat-label>
+                    <input matInput [(ngModel)]="price" />
+                </mat-form-field>
+
+                <div class="example-button-row">
+                    <button mat-stroked-button style="color: #6e8cfb; border-color: #6e8cfb; margin-right: 20px"
+                        (click)="cancel()">
+                        <mat-icon>cancel</mat-icon> ยกเลิก
+                    </button>
+                    <button mat-raised-button style="background-color: #6e8cfb; color: aliceblue" (click)="savegame()">
+                        <mat-icon>save</mat-icon> บันทึก
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

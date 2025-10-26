@@ -1,25 +1,51 @@
-<div class="profile-section" *ngIf="user">
-    <div class="profile-card">
-        <img [src]="'https://server-gamery.onrender.com/uploads/' + user.image" alt="profile" />
-        <div class="detall" style="margin-top: 70px;">
-            <h2>{{user.username}}</h2>
-            <p>อีเมล : {{user.email}}</p>
-            <a [routerLink]="['edit-profile-user',user.user_id]">แก้ไขโปรไฟล์</a>
+<div class="page-container">
+    <div class="profile-section" *ngIf="user">
+        <div class="profile-card">
+            <img [src]=" apiUrl +'/uploads/' + user.image" alt="profile" />
+            <div class="detall" style="margin-top: 70px;">
+                <h2>{{user.username}}</h2>
+                <p>อีเมล : {{user.email}}</p>
+                <a [routerLink]="['edit-profile-user',user.user_id]">แก้ไขโปรไฟล์</a>
 
+            </div>
+
+            <div class="wallet" style="margin-left:20%">
+                <p><b>Wallet</b></p>
+                <p>ยอดเงินคงเหลือ</p>
+                <b>฿ {{user.wallet}}</b>
+            </div>
+            <div class="example-button-row">
+                <a [routerLink]="['add-wallet',user.user_id]">
+                    <button mat-stroked-button style="color: #6e8cfb; border-color: #6e8cfb">
+                        <mat-icon>account_balance_wallet</mat-icon> เติมเงิน
+                    </button>
+                </a>
+
+                <button matButton="elevated" style="background-color: #6e8cfb; color: aliceblue" (click)="logout()">
+                    <mat-icon>logout</mat-icon> ออกจากระบบ
+                </button>
+            </div>
         </div>
 
-        <div class="wallet" style="margin-left:20%">
-            <p><b>Wallet</b></p>
-            <p>ยอดเงินคงเหลือ</p>
-            <b>฿390</b>
-        </div>
-        <div class="example-button-row">
-            <button mat-stroked-button style="color: #6e8cfb; border-color: #6e8cfb">
-                <mat-icon>account_balance_wallet</mat-icon> เติมเงิน
-            </button>
-            <button matButton="elevated" style="background-color: #6e8cfb; color: aliceblue" (click)="logout()">
-                <mat-icon>logout</mat-icon> ออกจากระบบ
-            </button>
+    </div>
+    <div class="history-container" *ngIf="transaction && transaction.length > 0">
+        <div class="history-card" >
+            <div class="user-name">ประวัติการทำรายการ</div>
+
+            <div class="transaction" *ngFor="let t of transaction">
+                <div class="transaction-left">
+                    <div *ngIf="t.transaction_type == 2">
+                        <span class="transaction-type">เติมเงิน</span>
+                    </div>
+                    <div *ngIf="t.transaction_type == 1">
+                        <span class="transaction-type">ซื้อเกม</span>
+                    </div>
+                    <span class="transaction-date">{{t.transaction_date}}</span>
+                </div>
+                <div class="transaction-amount plus" *ngIf="t.transaction_type == 2">+ {{t.amount}}</div>
+                <div class="transaction-amount minus" *ngIf="t.transaction_type == 1">- {{t.amount}}</div>
+            </div>
         </div>
     </div>
+
 </div>

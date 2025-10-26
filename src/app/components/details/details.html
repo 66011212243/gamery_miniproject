@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evil has survived</title>
+  </head>
+  <body>
+    <div class="container" *ngIf="game">
+      <div class="card">
+        <img
+          [src]=" apiUrl +'/uploads/' + game[0].image"
+          alt="Evil has survived">
+        <div class="card-content">
+          <div>
+            <h4>Top 5</h4>
+            <h2>{{game[0].name}}</h2>
+            <p style="color: gray; font-size: 14px">
+              {{game[0].type_name}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{{game[0].release_date}}
+            </p>
+            <p>
+              {{game[0].description}}
+            </p>
+          </div>
+
+          <div class="price-row">
+            <div class="price">
+              <span>{{game[0].price}} บาท</span>
+              <!-- <span class="discount">-10%</span> -->
+            </div>
+
+            <div class="bay" *ngIf="currentUser.status === 0">
+              <div *ngIf="bought == true">
+                  <button class="buy-button" (click)="buyGame()">ซื้อ</button>
+              </div>
+              <div *ngIf="bought == false">
+                  <button class="play-button" >เล่นเกม</button>
+              </div>
+              
+              <mat-icon class="cart-icon">shopping_cart</mat-icon>
+            </div>
+          </div>
+
+          <div class="admin-row" *ngIf="currentUser.status === 1">
+            <div class="bay">
+              <a [routerLink]="['edit-game', game[0].game_id]">
+                <button class="buy-button">แก้ไข</button>
+              </a>
+
+              <button class="buy-button" (click)="onDelete(game[0].game_id)">ลบ</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

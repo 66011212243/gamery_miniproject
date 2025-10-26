@@ -1,0 +1,21 @@
+<div *ngIf="getgames && getgames.length > 0 else noGame">
+    <section class="top-games">
+        <h2>| ผลการค้นหา</h2>
+        <div class="game-row">
+            <ng-container *ngFor="let game of getgames">
+                <div class="game-card" [routerLink]="['/details',game.game_id]">
+                    <img [src]=" apiUrl +'/uploads/'  + game.image" alt="">
+                    <div class="detal">
+                        <p>{{game.name}}</p>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </section>
+</div>
+
+<ng-template #noGame>
+    <div class="noGame">
+        <p>ไม่มีรายการ</p>
+    </div>
+</ng-template>

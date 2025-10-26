@@ -5,4 +5,5 @@ export interface UserGetRes {
     password: string;
     image:    string;
     status:   number;
+    wallet:   number;
 }

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../../services/api/users';
 import { UserGetRes } from '../../model/user_get_res';
+import { Constants } from '../../config/constants';
 
 @Component({
   selector: 'app-edit-profile-user',
@@ -20,7 +21,11 @@ import { UserGetRes } from '../../model/user_get_res';
   styleUrl: './edit-profile-user.scss'
 })
 export class EditProfileUser {
-  constructor(private http: HttpClient, private userService: Users, private router: Router,private route: ActivatedRoute) { }
+  apiUrl: string;
+  constructor(private http: HttpClient, private userService: Users,
+    private router: Router, private route: ActivatedRoute, private constants: Constants) {
+    this.apiUrl = this.constants.API_ENDPOINT;
+  }
   currentUser: any = null;
   username: string = '';
   image: File | null = null;
@@ -42,8 +47,9 @@ export class EditProfileUser {
       error: (err) => {
         if (err.status === 401) this.router.navigate(['/']);
       }
-      
+
     });
+    
     this.userId = +this.route.snapshot.paramMap.get('id')!;
 
     this.user = await this.userService.getUserById(this.userId);

@@ -1,0 +1,88 @@
+.history-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3%;
+  }
+
+  .history-card {
+    background-color: #fff;
+    border-radius: 10px;
+    border: 4px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    width: 1200px;
+    max-height: 400px; /* 👈 ความสูงสูงสุดของกล่อง */
+    overflow-y: auto; 
+    margin-top: 5%; /* 👈 ถ้าเกินความสูงให้มี scroll */
+  }
+
+  .user-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #555;
+    text-align: center;
+  }
+
+  .transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .transaction:last-child {
+    margin-bottom: 0;
+  }
+
+  .transaction-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .transaction-type {
+    font-weight: 600;
+    color: #555;
+  }
+
+  .transaction-date {
+    font-size: 13px;
+    color: #aaa;
+  }
+
+  .transaction-amount {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .plus {
+    color: green;
+  }
+
+  .minus {
+    color: red;
+  }
+
+
+
+  .nohistory p {
+    text-align: center;
+    color: #898989;
+
+    padding-bottom: 20%;
+  }
+
+  .header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}

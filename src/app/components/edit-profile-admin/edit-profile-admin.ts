@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../../services/api/users';
 import { UserGetRes } from '../../model/user_get_res';
+import { Constants } from '../../config/constants';
 
 @Component({
   selector: 'app-edit-profile-admin',
@@ -20,7 +21,12 @@ import { UserGetRes } from '../../model/user_get_res';
   styleUrl: './edit-profile-admin.scss'
 })
 export class EditProfileAdmin {
-  constructor(private http: HttpClient, private userService: Users, private router: Router, private route: ActivatedRoute) { }
+  apiUrl: string;
+  constructor(private http: HttpClient, private userService: Users,
+     private router: Router, private route: ActivatedRoute,private constants: Constants) {
+    this.apiUrl = this.constants.API_ENDPOINT;
+    console.log(this.apiUrl);
+   }
   currentUser: any = null;
   username: string = '';
   image: File | null = null;
@@ -33,6 +39,7 @@ export class EditProfileAdmin {
 
 
   async ngOnInit() {
+    
     this.userService.getProfile().subscribe({
       next: (res: any) => {
         this.currentUser = res.profile; // ข้อมูลจาก backend

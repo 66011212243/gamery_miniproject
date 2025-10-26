@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="header">
+        <button class="back-btn" (click)="backprofile()">← กลับ</button>
+    </div>
+
+    <div class="amount-grid">
+        <div class="amount-card" [class.selected]="selectedAmount === 100" (click)="selectAmount(100)">
+            <div class="cardColumn">
+                <img src="assets/images/1.png" alt="" style="width: 60%;">
+                <div style="margin-top: -15px;">
+                    🪙฿100
+                </div>
+
+            </div>
+        </div>
+
+        <div class="amount-card" [class.selected]="selectedAmount === 200" (click)="selectAmount(200)">
+            <div class="cardColumn" >
+                <img src="assets/images/2.png" alt="" style="width: 60%;">
+                <div style="margin-top: -15px;">
+                    🪙฿200
+                </div>
+
+            </div>
+        </div>
+        <div class="amount-card" [class.selected]="selectedAmount === 500" (click)="selectAmount(500)">
+            <div class="cardColumn">
+                <img src="assets/images/3.png" alt="" style="width: 60%;">
+                <div style="margin-top: -15px;">
+                    🪙฿500
+                </div>
+
+            </div>
+        </div>
+        <div class="amount-card" [class.selected]="selectedAmount === 700" (click)="selectAmount(700)">
+            <div class="cardColumn">
+                <img src="assets/images/4.png" alt="" style="width: 60%;">
+                <div style="margin-top: -15px;">
+                    🪙฿700
+                </div>
+
+            </div>
+        </div>
+        <div class="amount-card" [class.selected]="selectedAmount === 1000" (click)="selectAmount(1000)">
+            <div class="cardColumn">
+                <img src="assets/images/5.png" alt="" style="width: 60%;">
+                <div style="margin-top: -15px;">
+                    🪙฿1,000
+                </div>
+
+            </div>
+        </div>
+        <div class="amount-card" (click)="openCustomAmount()">
+            <div class="cardColumn">
+                <img src="assets/images/6.png" alt="" style="width: 60%;">
+                <div style="margin-top: -15px;">
+                    กำหนดเอง
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <button mat-raised-button color="primary" style="margin-left: 10px; color: #fff; background-color: #6e8cfb"
+    (click)="confirmCoin()">
+        <mat-icon>check_circle</mat-icon>
+        ยืนยัน
+    </button>
+
+    <div class="modal-overlay" *ngIf="showCustomAmount">
+        <div class="modal">
+            <h3>กรุณากำหนดจำนวนเงินที่ต้องการเติม</h3>
+            <input type="number" placeholder="เช่น 500" class="input-box" [(ngModel)] ="selectedAmount"/>
+            <div class="modal-buttons">
+                <button class="btn confirm" (click)="confirmCoin()" ><mat-icon>check_circle</mat-icon> ยืนยัน</button>
+                <button class="btn cancel" (click)="closeCustomAmount()">
+                    <mat-icon>cancel</mat-icon> ยกเลิก
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

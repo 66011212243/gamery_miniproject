@@ -20,17 +20,17 @@
                             </a>
                         </div>
                         <div class="game">
-                            <a href="/">
+                            <a [routerLink]="['create-game']">
                                 สร้างเกม
                             </a>
                         </div>
                         <div class="game">
-                            <a href="/">
+                            <a [routerLink]="['details']">
                                 โค้ดส่วนลด
                             </a>
                         </div>
                         <div class="game">
-                            <a href="/">
+                            <a [routerLink]="['member-page']">
                                 ผู้ใช้
                             </a>
                         </div>
@@ -38,7 +38,7 @@
 
                     <ng-template #userHeader>
                         <div class="homepage">
-                            <a [routerLink]="['homepage-user']">
+                            <a [routerLink]="['homepage-user',userId]">
                                 หน้าแรก
                             </a>
                         </div>
@@ -55,16 +55,19 @@
 
             <div class="profile">
 
-                <form action="">
-                    <mat-label></mat-label>
-                    <input matInput class="find">
-                </form>
+                <input matInput class="find" [(ngModel)]="searchgame">
 
-                <div class="iconCenter">
+                <div class="bt-search">
+                    <button matMiniFab (click)="search()">
+                        <mat-icon fontIcon="search"></mat-icon>
+                    </button>
+                </div>
+
+                <div class="iconCenter" *ngIf="currentUser?.status === 0">
                     <mat-icon fontIcon="shopping_cart"></mat-icon>
                 </div>
-                <div class="img-Input" (click)="goToProfile()" >
-                    <img [src]="'https://server-gamery.onrender.com/uploads/' + user?.image" alt="">
+                <div class="img-Input" (click)="goToProfile()">
+                    <img [src]=" apiUrl +'/uploads/'  + user?.image" alt="">
                 </div>
 
             </div>

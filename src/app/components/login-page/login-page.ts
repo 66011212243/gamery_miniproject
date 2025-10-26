@@ -39,7 +39,8 @@ export class LoginPage {
         this.router.navigate(['/homepage-admin']);
       } else {
         // user ปกติ
-        this.router.navigate(['/homepage-user']);
+        this.router.navigate(['/homepage-user',currentUser.user_id]);
+        console.log("id: ",currentUser.user_id)
       }
 
       // เก็บข้อมูล user ไว้ใน localStorage/sessionStorage ถ้าต้องการ

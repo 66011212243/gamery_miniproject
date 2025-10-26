@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
 import { lastValueFrom } from 'rxjs';
 import { UserGetRes } from '../../model/user_get_res';
+import { TransactionGetRes } from '../../model/transaction_get_res';
+import { MemberGetRes } from '../../model/member_get_res';
 
 @Injectable({
     providedIn: 'root'
@@ -82,4 +84,42 @@ export class Users {
             return null;
         }
     }
+
+    public async addWallet(user_id: number, wallet: number) {
+        const url = `${this.constants.API_ENDPOINT}/addWallet/${user_id}`;
+        try {
+            const response = await lastValueFrom(this.http.put(url, {wallet:wallet}));
+            console.log(response);
+        } catch (error) {
+            console.error("POST failed:", error);
+        }
+    }
+
+    public async addTransaction(user_id: number,amount: number , transaction_type: number) {
+        const url = this.constants.API_ENDPOINT + '/transaction';
+        const body = {
+            user_id : user_id,
+            amount : amount,
+            transaction_type : transaction_type
+        }
+        try {
+            const response = await lastValueFrom(this.http.post(url,body));
+            console.log(response);
+        } catch (error) {
+            console.error("POST failed:", error);
+        }
+    }
+
+    public async getTransaction(user_id: number) {
+        const url = `${this.constants.API_ENDPOINT}/gettransaction/${user_id}`;
+        const response = await lastValueFrom(this.http.get(url));
+        return response as TransactionGetRes[];
+    }
+
+    async member() {
+        const url = this.constants.API_ENDPOINT + '/member';
+        const response = await lastValueFrom(this.http.get<MemberGetRes[]>(url));
+        return response;
+    }
+
 }

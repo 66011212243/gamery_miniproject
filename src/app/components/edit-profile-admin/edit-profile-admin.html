@@ -4,7 +4,7 @@
 
         <!-- ถ้ายังไม่มี preview ให้โชว์รูปปัจจุบัน -->
         <ng-template #currentImage>
-            <img *ngIf="user?.image" [src]="'https://server-gamery.onrender.com/uploads/' + user?.image"
+            <img *ngIf="user?.image" [src]=" apiUrl + '/uploads/' + user?.image"
                 alt="Current Profile Image" width="150">
         </ng-template>
         <div class="profile-edit" style="max-width: 500px; margin: 70px auto;">

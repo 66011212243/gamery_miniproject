@@ -1,0 +1,29 @@
+<div class="header">
+        <button class="back-btn" (click)="back()">← กลับ</button>
+    </div>
+<div class="history-container">
+    <div class="history-card">
+        <div class="user-name">ประวัติการทำรายการ</div>
+        <div *ngIf="transaction && transaction.length > 0 else nohistory" >
+            <div class="transaction" *ngFor="let t of transaction">
+                <div class="transaction-left">
+                    <div *ngIf="t.transaction_type == 2">
+                        <span class="transaction-type">เติมเงิน</span>
+                    </div>
+                    <div *ngIf="t.transaction_type == 1">
+                        <span class="transaction-type">ซื้อเกม</span>
+                    </div>
+                    <span class="transaction-date">{{t.transaction_date}}</span>
+                </div>
+                <div class="transaction-amount plus" *ngIf="t.transaction_type == 2">+ {{t.amount}}</div>
+                <div class="transaction-amount minus" *ngIf="t.transaction_type == 1">- {{t.amount}}</div>
+            </div>
+        </div>
+        <ng-template #nohistory>
+            <div class="nohistory">
+                <p>ไม่มีรายการ</p>
+            </div>
+        </ng-template>
+
+    </div>
+</div>

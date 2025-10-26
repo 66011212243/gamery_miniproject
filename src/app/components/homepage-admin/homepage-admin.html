@@ -1,1 +1,39 @@
-<p>homepage-admin works!</p>
+
+<section class="container">
+  <div class="slider-wrapper">
+    <div class="slider">
+      <img id="slider-1" src="https://pbs.twimg.com/media/DdZ_9ZwVMAAjk30.jpg" alt="image">
+      <img id="slider-2" src="https://cdn2.unrealengine.com/fortnite-og-header-1900x600-3f465b890b09.jpg" alt="image">
+      <img id="slider-3"
+        src="https://www.impericon.com/cdn/shop/collections/20220811_dead_by_daylight__header.jpg?v=1715766486"
+        alt="image">
+      <img id="slider-4"
+        src="https://i.imgur.com/l6x8G63.png"
+        alt="image">
+    </div>
+    <div class="slider-nav">
+      <a (click)="scrollTo('slider-1')"></a>
+      <a (click)="scrollTo('slider-2')"></a>
+      <a (click)="scrollTo('slider-3')"></a>
+      <a (click)="scrollTo('slider-4')"></a>
+    </div>
+  </div>
+</section>
+
+
+<section class="top-games">
+  <h2>| ประเภทเกม</h2>
+  <div *ngFor="let type_name of this.gamestype">
+    <h3>{{type_name.type_name}}</h3>
+    <div class="game-row">
+      <ng-container *ngFor="let game of games">
+        <div class="game-card" *ngIf="game.type_id === type_name.type_id" [routerLink]="['/details',game.game_id]">
+          <img [src]=" apiUrl +'/uploads/'  + game.image" alt="">
+          <div class="detal">
+            <p>{{game.name}}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>

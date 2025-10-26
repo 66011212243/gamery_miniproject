@@ -1,0 +1,33 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f5f6fa;
+}
+
+.mat-mdc-table {
+  background-color: #fafafa;
+  margin-top: 55px;
+  width: 1300px;
+  border: 2px solid rgb(134, 134, 134);
+  margin-bottom: 5%;
+}
+
+.mat-mdc-header-cell {
+  font-weight: bold;
+  background-color: #2196f3;
+  color: black;
+  padding-left: 7%;
+}
+
+
+.mat-mdc-cell {
+  padding: 20px;
+  padding-left: 7%;
+}
+
+.table-container {
+  display: grid;
+  justify-content: center;
+  margin: 20px auto;
+
+}
