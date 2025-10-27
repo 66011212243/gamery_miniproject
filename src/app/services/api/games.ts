@@ -4,6 +4,7 @@ import { Constants } from '../../config/constants';
 import { lastValueFrom } from 'rxjs';
 import { GameTypeGetRes } from '../../model/gametype_get_res';
 import { GameGetRes } from '../../model/game_get_res';
+import { DiscountGetRes } from '../../model/discount_get_res';
 
 @Injectable({
     providedIn: 'root'
@@ -65,5 +66,26 @@ export class Games {
         const body = { name: searchgame};
         const response = await lastValueFrom(this.http.post<GameGetRes[]>(url, body));
         return response;
+    }
+
+    async createDiscount(code_name: string , discount: number , max_uses: number) {
+        const url = this.constants.API_ENDPOINT + '/createDiscount';
+        const body = {
+            code_name : code_name , 
+            discount : discount, 
+            max_uses : max_uses
+        }
+        try {
+            const response = await lastValueFrom(this.http.post(url,body));
+            console.log(response);
+        } catch (error) {
+            console.error("POST failed:", error);
+        }
+    }
+
+    async getDiscount() {
+        const url = this.constants.API_ENDPOINT + '/getDiscount';
+        const response = await lastValueFrom(this.http.get(url));
+        return response as DiscountGetRes[];
     }
 }

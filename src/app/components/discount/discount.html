@@ -1,0 +1,43 @@
+<body>
+    <div class="container">
+        <div class="cardRow">
+            <div>
+                <p>โค้ดส่วนลดทั้งหมด</p>
+                <mat-card class="example-card" appearance="outlined">
+
+                </mat-card>
+
+            </div>
+
+            <div class="cart-item">
+                <!-- <h2>สร้างโค้ดส่วนลด</h2> -->
+                <div class="right-section">
+                    <p style="margin-bottom: 0;">ชื่อโค้ดส่วนลด</p>
+                    <mat-form-field appearance="outline" style="width: 400px">
+                        <mat-label>ชื่อโค้ดส่วนลด</mat-label>
+                        <input matInput [(ngModel)]="codeName" />
+                    </mat-form-field>
+                    <p style="margin-bottom: 0;">ส่วนลด</p>
+                    <mat-form-field appearance="outline" style="width: 400px">
+                        <mat-label>ส่วนลด</mat-label>
+                        <input matInput [(ngModel)]="discount" />
+                    </mat-form-field>
+                    <p style="margin-bottom: 0;">จำนวนโค้ดส่วนลด</p>
+                    <mat-form-field appearance="outline" style="width: 400px">
+                        <mat-label>จำนวนโค้ดส่วนลด</mat-label>
+                        <input matInput [(ngModel)]="maxUses" />
+                    </mat-form-field>
+
+                    <div class="example-button-row">
+                        <button (click)="create()" mat-raised-button
+                            style="background-color: #6e8cfb; color: aliceblue">
+                            สร้าง
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</body>
