@@ -16,6 +16,8 @@ import { MemberPage } from './components/member-page/member-page';
 import { HistoryPage } from './components/history-page/history-page';
 import { SearchgamePage } from './components/searchgame-page/searchgame-page';
 import { Discount } from './components/discount/discount';
+import { AddCartPage } from './components/add-cart-page/add-cart-page';
+import { OrdersPage } from './components/orders-page/orders-page';
 
 export const routes: Routes = [
 
@@ -43,6 +45,8 @@ export const routes: Routes = [
       { path: 'member-page', component: MemberPage},
       { path: 'searchgame-page/:searchgame', component: SearchgamePage},
       { path: 'discount', component: Discount},
+      { path: 'add-cart-page/:id', component: AddCartPage},
+      { path: 'orders-page', component: OrdersPage},
       
     ]
   },

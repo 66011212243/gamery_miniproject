@@ -1,0 +1,89 @@
+.cart-container {
+        width: 1100px;
+        height: auto;
+         margin: 55px auto; /*autoคือทำให้การ์ดอยุ่ตรงกลาง */
+        
+        padding: 16px;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .cart-item {
+        display: flex;
+        margin-bottom: 16px;
+        margin-left: 10%;
+      }
+
+      .item-image {
+        width: 393px;
+        height: 225px;
+        object-fit: cover;
+        margin-right: 16px;
+      }
+
+      .item-details {
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+      }
+
+      .item-name {
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .item-price {
+        margin-top: 4px;
+        color: #555;
+      }
+
+      .discount {
+        font-weight: bold;
+        color: #6e8cfb;
+      }
+
+      .discount-section,
+      .total-section {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: 5%;
+        margin-right: 5%;
+        font-size: 20px;
+      }
+      .discountp {
+        /* position: absolute; */
+        background-color: #6e8cfb;
+        color: white;
+        padding: 2px 5px;
+        font-size: 12px;
+        border-radius: 3px;
+        top: 5px;
+        left: 5px;
+      }
+      h4{
+        font-weight: bold;
+        margin-bottom: 5%;
+        margin-left: 5%;
+        margin-top: 3%;
+      }
+
+      .addfont {
+        font-size: 20px;
+      }
+
+      .cart {
+        margin-top: 2%;
+        margin-left: 4%;
+        font-size: 25px;
+      }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<body>
+    <h3 class="cart">รถเข็นสินค้า</h3>
+    <div *ngFor="let game of games">
+        <mat-checkbox [(ngModel)]="game.selected">
+            <div class="cart-container">
+
+                <div class="cart-item">
+                    <img [src]=" apiUrl +'/uploads/'  + game.image" alt="" class="item-image" />
+                    <div class="item-details">
+                        <div class="item-name addfont">{{game.name}}</div>
+
+                        <div class="quantity-control addfont">
+                            <button mat-icon-button (click)="deleteCart(game.game_id)">
+                                <mat-icon>remove</mat-icon>
+                            </button>
+                            <span>1</span>
+                        </div>
+
+                        <div class="item-price addfont">
+                            <span class="discount">{{game.price}} บาท</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </mat-checkbox>
+    </div>
+    <div class="total-section">
+        <button class="addfont" mat-raised-button color="primary" (click)="gotoOrders()"
+        style="margin-left: 10px; color: #fff; background-color: #6e8cfb">
+            ซื้อ
+        </button>
+    </div>
+
+</body>
+
+</html>
