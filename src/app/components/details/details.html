@@ -32,7 +32,7 @@
             <div class="bay" *ngIf="currentUser.status === 0 && !bought">
                   <button class="buy-button" (click)="buyGame()">ซื้อ</button>
               
-              <mat-icon class="cart-icon">shopping_cart</mat-icon>
+              <mat-icon class="cart-icon" (click)="addCart()">shopping_cart</mat-icon>
             </div>
           </div>
 

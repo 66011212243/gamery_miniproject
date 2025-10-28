@@ -64,7 +64,10 @@
                 </div>
 
                 <div class="iconCenter" *ngIf="currentUser?.status === 0">
-                    <mat-icon fontIcon="shopping_cart"></mat-icon>
+                    <a [routerLink]="['/add-cart-page',userId]">
+                        <mat-icon fontIcon="shopping_cart"></mat-icon>
+                    </a>
+                    
                 </div>
                 <div class="img-Input" (click)="goToProfile()">
                     <img [src]=" apiUrl +'/uploads/'  + user?.image" alt="">

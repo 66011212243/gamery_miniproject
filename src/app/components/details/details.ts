@@ -12,6 +12,8 @@ import { GameGetRes } from '../../model/game_get_res';
 import { RouterModule } from '@angular/router';
 import { UserGetRes } from '../../model/user_get_res';
 import { Checklibrarygetres } from '../../model/Check_library_get_res';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CheckCartGetResponse } from '../../model/chackCart_get_res';
 
 @Component({
   selector: 'app-details',
@@ -23,7 +25,7 @@ export class Details {
   apiUrl: string;
   constructor(private http: HttpClient, private userService: Users,
     private router: Router, private route: ActivatedRoute, private constants: Constants,
-    private gameService: Games) {
+    private gameService: Games, private snackBar: MatSnackBar) {
     this.apiUrl = this.constants.API_ENDPOINT;
   }
 
@@ -36,8 +38,11 @@ export class Details {
   walletUser?: number;
   transaction_type : number = 1;
   userLi : Checklibrarygetres[] =[];
+  transaction_type: number = 1;
+  check_cart: CheckCartGetResponse[] = [];
 
   bought = true;
+  cart = true;
 
   async ngOnInit() {
     this.userService.getProfile().subscribe({
@@ -57,9 +62,9 @@ export class Details {
     console.log(this.game)
 
     this.user = await this.userService.getUserById(this.userId);
-    console.log("details: ",this.user)
+    console.log("details: ", this.user)
     this.walletUser = this.user?.wallet;
-    console.log("wallet: ",this.walletUser)
+    console.log("wallet: ", this.walletUser)
 
     this.userLi = await this.gameService.userlibraryt(this.userId, this.gameId);
     console.log("userLi ",this.userLi);
@@ -91,11 +96,11 @@ export class Details {
   }
 
   async buyGame() {
-    console.log("user: ",this.userId,"game :", this.gameId)
-    if(this.walletUser ) {
-      this.wallet = this.walletUser-this.game[0].price;
-    
-      if(this.wallet < 0){
+    console.log("user: ", this.userId, "game :", this.gameId)
+    if (this.walletUser) {
+      this.wallet = this.walletUser - this.game[0].price;
+
+      if (this.wallet < 0) {
         confirm('ยอดเงินของคุณไม่เพียงพอ');
       }
       else {
@@ -104,12 +109,36 @@ export class Details {
 
         console.log("game: ",this.game[0].price)
         console.log("price: ",this.wallet,"bought: ",this.bought);
+        this.bought = false;
+        console.log("game: ", this.game[0].price)
+        console.log("price: ", this.wallet, "bought: ", this.bought);
         await this.userService.addWallet(this.userId, this.wallet);
 
-        await this.userService.addTransaction(this.userId, this.game[0].price,this.transaction_type);
+        await this.userService.addTransaction(this.userId, this.game[0].price, this.transaction_type);
       }
     }
   }
 
   
+  async addCart() {
+    this.check_cart = await this.gameService.chackCart(this.userId, this.gameId);
+    console.log(this.check_cart);
+    if (this.check_cart.length > 0) {
+      this.snackBar.open('เกมนี้อยู่ในตะกร้าแล้ว!', 'ปิด', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+      });
+    }
+    else {
+      console.log("user: ", this.userId, "game :", this.gameId);
+      await this.gameService.addCart(this.userId, this.gameId);
+      this.snackBar.open('เพิ่มสินค้าลงตะกร้าแล้ว!', 'ปิด', {
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    });
+    }
+    
+  }
 }

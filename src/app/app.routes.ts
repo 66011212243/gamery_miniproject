@@ -18,6 +18,8 @@ import { SearchgamePage } from './components/searchgame-page/searchgame-page';
 import { Discount } from './components/discount/discount';
 import { EditDiscount } from './components/edit-discount/edit-discount';
 import { Library } from './components/library/library';
+import { AddCartPage } from './components/add-cart-page/add-cart-page';
+import { OrdersPage } from './components/orders-page/orders-page';
 
 export const routes: Routes = [
 
@@ -47,6 +49,8 @@ export const routes: Routes = [
       { path: 'searchgame-page/:searchgame', component: SearchgamePage},
       { path: 'discount', component: Discount},
       { path: 'library/:id', component: Library},
+      { path: 'add-cart-page/:id', component: AddCartPage},
+      { path: 'orders-page', component: OrdersPage},
       
     ]
   },
