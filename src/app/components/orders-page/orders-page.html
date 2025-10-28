@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<body>
+    <div class="cart-container">
+        <h4>สรุปคำสั่งซื้อ</h4>
+
+        <div class="cart-item" *ngFor="let order of orderGame">
+            <img [src]=" apiUrl +'/uploads/'  + order.image" alt="" class="item-image" />
+            <div class="item-details">
+                <div class="item-name">{{order.name}}</div>
+
+                <div class="quantity-control">
+                    <button mat-icon-button>
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                    <span>1</span>
+                </div>
+
+                <div class="item-price">
+                    <span class="discount">{{order.price}} บาท</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="discount-section">
+            <mat-form-field appearance="outline">
+                <mat-label>กรอกโค้ดส่วนลด</mat-label>
+                <input matInput [(ngModel)]="discountName" />
+            </mat-form-field>
+
+            <button (click)="addCode()" mat-raised-button color="primary"
+                style="margin-left: 10px; color: #fff; background-color: #6e8cfb">
+                ตกลง
+            </button>
+
+        </div>
+
+        <div class="total-section">
+            <div class="total">รวม: {{totalprice}}</div>
+            <button (click)="buyGame()"mat-raised-button color="primary" style="margin-left: 10px; color: #fff; background-color: #6e8cfb">
+                ซื้อ
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
