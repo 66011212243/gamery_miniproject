@@ -10,6 +10,8 @@ import { GameGetRes } from '../../model/game_get_res';
 import { Constants } from '../../config/constants';
 import { UserGetRes } from '../../model/user_get_res';
 import { Users } from '../../services/api/users';
+import { TopGameGetRes } from '../../model/topgame_ret_res';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-homepage-user',
@@ -28,6 +30,7 @@ export class HomepageUser {
 
   gamestype: GameTypeGetRes[] = [];
   games: GameGetRes[] = [];
+  topGames: TopGameGetRes[] = [];
 
   userId!: number;
   user: UserGetRes | null = null;
@@ -36,6 +39,7 @@ export class HomepageUser {
     this.gamestype = await this.gameService.getgameType();
     this.games = await this.gameService.getAllGames();
     console.log(this.games);
+    this.loadTopGames();
 
     this.userId = +this.route.snapshot.paramMap.get('id')!;
     this.user = await this.userService.getUserById(this.userId);
@@ -44,4 +48,13 @@ export class HomepageUser {
   scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }
+
+
+
+async loadTopGames() {
+  console.log('Start loadTopGames');
+  this.topGames = await this.gameService.getTotal_sales();
+  console.log('TopGames:', this.topGames);
 }
+}
+

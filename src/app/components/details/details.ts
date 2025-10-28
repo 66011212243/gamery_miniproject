@@ -11,6 +11,7 @@ import { Games } from '../../services/api/games';
 import { GameGetRes } from '../../model/game_get_res';
 import { RouterModule } from '@angular/router';
 import { UserGetRes } from '../../model/user_get_res';
+import { Checklibrarygetres } from '../../model/Check_library_get_res';
 
 @Component({
   selector: 'app-details',
@@ -34,6 +35,7 @@ export class Details {
   wallet: number = 0;
   walletUser?: number;
   transaction_type : number = 1;
+  userLi : Checklibrarygetres[] =[];
 
   bought = true;
 
@@ -43,6 +45,7 @@ export class Details {
         this.currentUser = res.profile; // ข้อมูลจาก backend
         console.log('currentUser:', this.currentUser);
         this.userId = this.currentUser.user_id;
+        
       },
       error: (err) => {
         if (err.status === 401) this.router.navigate(['/']);
@@ -57,6 +60,16 @@ export class Details {
     console.log("details: ",this.user)
     this.walletUser = this.user?.wallet;
     console.log("wallet: ",this.walletUser)
+
+    this.userLi = await this.gameService.userlibraryt(this.userId, this.gameId);
+    console.log("userLi ",this.userLi);
+    if (this.userLi.length > 0) {
+      this.bought = true
+    } else {
+      this.bought = false;
+    }
+    
+
 
   }
 
@@ -86,7 +99,9 @@ export class Details {
         confirm('ยอดเงินของคุณไม่เพียงพอ');
       }
       else {
-        this.bought = false;
+        // this.bought = false;
+        this.bought = true; // ปุ่มซื้อหาย → ปุ่มเล่นเกมปรากฏ
+
         console.log("game: ",this.game[0].price)
         console.log("price: ",this.wallet,"bought: ",this.bought);
         await this.userService.addWallet(this.userId, this.wallet);
@@ -95,4 +110,6 @@ export class Details {
       }
     }
   }
+
+  
 }
