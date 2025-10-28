@@ -1,43 +1,87 @@
 <body>
-    <div class="container">
-        <div class="cardRow">
-            <div>
-                <p>โค้ดส่วนลดทั้งหมด</p>
-                <mat-card class="example-card" appearance="outlined">
+  <div class="container">
+    <div class="cardRow">
 
-                </mat-card>
+      <div class="cart-item">
+        <!-- <h2>สร้างโค้ดส่วนลด</h2> -->
+        <div class="right-section">
+          <p style="margin-bottom: 0">ชื่อโค้ดส่วนลด</p>
+          <mat-form-field appearance="outline" style="width: 400px">
+            <mat-label>ชื่อโค้ดส่วนลด</mat-label>
+            <input matInput [(ngModel)]="codeName" />
+          </mat-form-field>
+          <p style="margin-bottom: 0">ส่วนลด</p>
+          <mat-form-field appearance="outline" style="width: 400px">
+            <mat-label>ส่วนลด</mat-label>
+            <input matInput [(ngModel)]="discount" />
+          </mat-form-field>
+          <p style="margin-bottom: 0">จำนวนโค้ดส่วนลด</p>
+          <mat-form-field appearance="outline" style="width: 400px">
+            <mat-label>จำนวนโค้ดส่วนลด</mat-label>
+            <input matInput [(ngModel)]="maxUses" />
+          </mat-form-field>
 
-            </div>
-
-            <div class="cart-item">
-                <!-- <h2>สร้างโค้ดส่วนลด</h2> -->
-                <div class="right-section">
-                    <p style="margin-bottom: 0;">ชื่อโค้ดส่วนลด</p>
-                    <mat-form-field appearance="outline" style="width: 400px">
-                        <mat-label>ชื่อโค้ดส่วนลด</mat-label>
-                        <input matInput [(ngModel)]="codeName" />
-                    </mat-form-field>
-                    <p style="margin-bottom: 0;">ส่วนลด</p>
-                    <mat-form-field appearance="outline" style="width: 400px">
-                        <mat-label>ส่วนลด</mat-label>
-                        <input matInput [(ngModel)]="discount" />
-                    </mat-form-field>
-                    <p style="margin-bottom: 0;">จำนวนโค้ดส่วนลด</p>
-                    <mat-form-field appearance="outline" style="width: 400px">
-                        <mat-label>จำนวนโค้ดส่วนลด</mat-label>
-                        <input matInput [(ngModel)]="maxUses" />
-                    </mat-form-field>
-
-                    <div class="example-button-row">
-                        <button (click)="create()" mat-raised-button
-                            style="background-color: #6e8cfb; color: aliceblue">
-                            สร้าง
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-
+          <div class="example-button-row">
+            <button
+              (click)="create()"
+              mat-raised-button
+              style="background-color: #6e8cfb; color: aliceblue"
+            >
+              สร้าง
+            </button>
+          </div>
         </div>
+      </div>
+      <div>
+        <div class="page-header">
+          <h2>คูปองส่วนลดทั้งหมด</h2>
+
+          <!-- ตารางคูปอง -->
+          <mat-card class="table-card">
+            <table
+              mat-table
+              [dataSource]="discountCode"
+              class="mat-elevation-z3 full-width-table"
+            >
+
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>ชื่อคูปอง</th>
+                <td mat-cell *matCellDef="let row">{{ row.code_name }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="discount">
+                <th mat-header-cell *matHeaderCellDef>ส่วนลด (%)</th>
+                <td mat-cell *matCellDef="let row">{{ row.discount }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="max_uses">
+                <th mat-header-cell *matHeaderCellDef>ใช้ได้สูงสุด</th>
+                <td mat-cell *matCellDef="let row">{{ row.max_uses }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="used_count">
+                <th mat-header-cell *matHeaderCellDef>ใช้ไปแล้ว</th>
+                <td mat-cell *matCellDef="let row">{{ row.used_count }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>จัดการ</th>
+                <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button color="primary" (click)="edit(row)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" (click)="onDeleteDiscount(row.code_id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </mat-card>
+        </div>
+      </div>
     </div>
+  </div>
 </body>

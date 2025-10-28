@@ -5,72 +5,112 @@ import { lastValueFrom } from 'rxjs';
 import { GameTypeGetRes } from '../../model/gametype_get_res';
 import { GameGetRes } from '../../model/game_get_res';
 import { DiscountGetRes } from '../../model/discount_get_res';
+import { Checklibrarygetres } from '../../model/Check_library_get_res';
 import { CheckCartGetResponse } from '../../model/chackCart_get_res';
 import { CartGetResponse } from '../../model/cart_get_res';
 import { UserDiscountGetRes } from '../../model/user_discount_get_res';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class Games {
-    constructor(private constants: Constants, private http: HttpClient) { }
+  constructor(private constants: Constants, private http: HttpClient) {}
 
-    async createGame(formData: FormData) {
-        const url = this.constants.API_ENDPOINT + '/creategame';
-        try {
-            const response = await lastValueFrom(this.http.post(url, formData));
-            console.log(response);
-        } catch (error) {
-            console.error("POST failed:", error);
-        }
+  async createGame(formData: FormData) {
+    const url = this.constants.API_ENDPOINT + '/creategame';
+    try {
+      const response = await lastValueFrom(this.http.post(url, formData));
+      console.log(response);
+    } catch (error) {
+      console.error('POST failed:', error);
     }
+  }
 
-    async getgameType() {
-        const url = this.constants.API_ENDPOINT + '/getgametype';
-        const response = await lastValueFrom(this.http.get(url));
-        return response as GameTypeGetRes[];
+  async getgameType() {
+    const url = this.constants.API_ENDPOINT + '/getgametype';
+    const response = await lastValueFrom(this.http.get(url));
+    return response as GameTypeGetRes[];
+  }
+
+  async getAllGames() {
+    const url = this.constants.API_ENDPOINT + '/getgames';
+    const response = await lastValueFrom(this.http.get(url));
+    return response as GameGetRes[];
+  }
+
+  async getGameById(game_id: number) {
+    const url = `${this.constants.API_ENDPOINT}/getGamesById/${game_id}`;
+    const response = await lastValueFrom(this.http.get(url));
+    return response as GameGetRes[];
+  }
+
+  async editGame(game_id: number, formData: FormData) {
+    const url = `${this.constants.API_ENDPOINT}/editgame/${game_id}`;
+    try {
+      const response = await lastValueFrom(this.http.put(url, formData));
+      console.log(response);
+    } catch (error) {
+      console.error('POST failed:', error);
     }
+  }
 
-    async getAllGames() {
-        const url = this.constants.API_ENDPOINT + '/getgames';
-        const response = await lastValueFrom(this.http.get(url));
-        return response as GameGetRes[];
+  async deleteGame(game_id: number) {
+    const url = `${this.constants.API_ENDPOINT}/deleteGame/${game_id}`;
+    try {
+      const response = await lastValueFrom(this.http.delete(url));
+      console.log(response);
+    } catch (error) {
+      console.error('POST failed:', error);
     }
+  }
 
-    async getGameById(game_id: number) {
-        const url = `${this.constants.API_ENDPOINT}/getGamesById/${game_id}`;
-        const response = await lastValueFrom(this.http.get(url));
-        return response as GameGetRes[];
-    }
+  async searchgame(searchgame: string) {
+    const url = this.constants.API_ENDPOINT + '/search';
+    const body = { name: searchgame };
+    const response = await lastValueFrom(
+      this.http.post<GameGetRes[]>(url, body)
+    );
+    return response;
+  }
 
-    async editGame(game_id: number, formData: FormData) {
-        const url = `${this.constants.API_ENDPOINT}/editgame/${game_id}`;
-        try {
-            const response = await lastValueFrom(this.http.put(url, formData));
-            console.log(response);
-        } catch (error) {
-            console.error("POST failed:", error);
-        }
-    }
-
-    async deleteGame(game_id: number) {
-        const url = `${this.constants.API_ENDPOINT}/deleteGame/${game_id}`;
-        try {
-            const response = await lastValueFrom(this.http.delete(url));
-            console.log(response);
-        } catch (error) {
-            console.error("POST failed:", error);
-        }
-    }
-
+  async createDiscount(code_name: string, discount: number, max_uses: number) {
+    const url = this.constants.API_ENDPOINT + '/createDiscount';
+    const body = {
+      code_name: code_name,
+      discount: discount,
+      max_uses: max_uses,
+    };
+    try {
+      const response = await lastValueFrom(this.http.post(url, body));
+      console.log(response);
+    } catch (error) {
+      console.error('POST failed:', error);
     async searchgame(searchgame: string) {
         const url = this.constants.API_ENDPOINT + '/search';
         const body = { name: searchgame };
         const response = await lastValueFrom(this.http.post<GameGetRes[]>(url, body));
         return response;
     }
+  }
 
+  async getDiscount() {
+    const url = this.constants.API_ENDPOINT + '/getDiscount';
+    const response = await lastValueFrom(this.http.get(url));
+    return response as DiscountGetRes[];
+  }
+
+  async deleteDiscount(id: number): Promise<void> {
+    const url = `${this.constants.API_ENDPOINT}/deleteDiscount/${id}`;
+    await lastValueFrom(this.http.delete(url));
+  }
+
+  async editdiscount(id: number, formData: FormData) {
+    const url = `${this.constants.API_ENDPOINT}/editdiscount/${id}`;
+    try {
+      const response = await lastValueFrom(this.http.put(url, formData));
+      console.log(response);
+    } catch (error) {
+      console.error('POST failed:', error);
     async createDiscount(code_name: string, discount: number, max_uses: number) {
         const url = this.constants.API_ENDPOINT + '/createDiscount';
         const body = {
@@ -85,12 +125,33 @@ export class Games {
             console.error("POST failed:", error);
         }
     }
+  }
 
-    async getDiscount() {
-        const url = this.constants.API_ENDPOINT + '/getDiscount';
-        const response = await lastValueFrom(this.http.get(url));
-        return response as DiscountGetRes[];
+  async getTotal_sales() {
+    const url = this.constants.API_ENDPOINT + '/getTotal_sales';
+    const response = await lastValueFrom(this.http.get(url));
+    return response as GameGetRes[];
+  }
+
+  getUserLibrary(userId: number): Promise<any[]> {
+    const url = `${this.constants.API_ENDPOINT}/library/${userId}`;
+    return lastValueFrom(this.http.get<any[]>(url));
+  }
+  async userlibraryt(user_id: number, game_id: number) {
+    const url = this.constants.API_ENDPOINT + '/checklibrary';
+    const body = {
+      user_id: user_id,
+      game_id: game_id,
+    };
+    try {
+      const response = await lastValueFrom(this.http.post(url, body));
+      return response as Checklibrarygetres[];
+    } catch (error) {
+      console.error('POST failed:', error);
+      return [];
     }
+  }
+}
 
     async addCart(user_id: number, game_id: number) {
         const url = this.constants.API_ENDPOINT + '/addCart';

@@ -37,6 +37,26 @@ export class Discount {
     console.log(this.discountCode);
   }
 
+  // ปุ่มแก้ไขในตาราง
+edit(row: DiscountGetRes) {
+  this.router.navigate(['/edit-discount', row.code_id], { state: { discount: row } });
+}
+
+  async onDeleteDiscount(id: number) {
+  const confirmDelete = confirm('คุณต้องการที่จะลบใช่หรือไม่');
+  if (!confirmDelete) return;
+
+  try {
+    await this.gameService.deleteDiscount(id); // เรียก API ลบ
+    alert('ลบสำเร็จ!');
+    // โหลดข้อมูลใหม่เพื่อรีเฟรชตาราง
+    this.discountCode = await this.gameService.getDiscount();
+  } catch (error) {
+    console.error(error);
+    alert('เกิดข้อผิดพลาดในการลบ');
+  }
+}
+
   async create() {
     console.log(this.codeName);
     console.log(this.discount);
@@ -48,10 +68,6 @@ export class Discount {
     });
   }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  // discountCode = [
-  //   { position: 'โค้ด A', name: '10%', weight: 100, symbol: 5 },
-  //   { position: 'โค้ด B', name: '20%', weight: 50, symbol: 10 },
-  //   { position: 'โค้ด C', name: '30%', weight: 30, symbol: 15 }
-  // ];
+  displayedColumns: string[] = ['name', 'discount', 'max_uses','used_count','actions'];
+ 
 }

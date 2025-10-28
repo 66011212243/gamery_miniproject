@@ -16,6 +16,8 @@ import { MemberPage } from './components/member-page/member-page';
 import { HistoryPage } from './components/history-page/history-page';
 import { SearchgamePage } from './components/searchgame-page/searchgame-page';
 import { Discount } from './components/discount/discount';
+import { EditDiscount } from './components/edit-discount/edit-discount';
+import { Library } from './components/library/library';
 import { AddCartPage } from './components/add-cart-page/add-cart-page';
 import { OrdersPage } from './components/orders-page/orders-page';
 
@@ -30,6 +32,7 @@ export const routes: Routes = [
   { path: 'create-game', component: CreateGame },  
   { path: 'details/:id/edit-game/:id', component: EditGame},
   { path: 'history-page/:id', component: HistoryPage},
+   { path: 'edit-discount/:id', component: EditDiscount},
   
   {
     path: '',
@@ -45,6 +48,7 @@ export const routes: Routes = [
       { path: 'member-page', component: MemberPage},
       { path: 'searchgame-page/:searchgame', component: SearchgamePage},
       { path: 'discount', component: Discount},
+      { path: 'library/:id', component: Library},
       { path: 'add-cart-page/:id', component: AddCartPage},
       { path: 'orders-page', component: OrdersPage},
       

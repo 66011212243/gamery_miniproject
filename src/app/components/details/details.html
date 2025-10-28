@@ -29,13 +29,8 @@
               <!-- <span class="discount">-10%</span> -->
             </div>
 
-            <div class="bay" *ngIf="currentUser.status === 0">
-              <div *ngIf="bought == true">
+            <div class="bay" *ngIf="currentUser.status === 0 && !bought">
                   <button class="buy-button" (click)="buyGame()">ซื้อ</button>
-              </div>
-              <div *ngIf="bought == false">
-                  <button class="play-button" >เล่นเกม</button>
-              </div>
               
               <mat-icon class="cart-icon" (click)="addCart()">shopping_cart</mat-icon>
             </div>

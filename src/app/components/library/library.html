@@ -1,0 +1,17 @@
+<section class="library-section">
+  <h2>| เกมที่ซื้อแล้ว ({{ libraryGames.length }})</h2>
+  <div class="game-row">
+    <div
+      class="game-card"
+      *ngFor="let game of libraryGames"
+      [routerLink]="['/details', game.game_id]"
+    >
+      <img [src]="apiUrl + '/uploads/' + game.image" alt="{{ game.game_name }}" />
+      <div class="detail">
+        <p>{{ game.game_name }}</p>
+
+        
+      </div>
+    </div>
+  </div>
+</section>

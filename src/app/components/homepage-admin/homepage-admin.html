@@ -22,6 +22,16 @@
 
 
 <section class="top-games">
+  <section class="top-games">
+  <h2>| ประเภทเกมขายดี</h2>
+   <div class="game-row">
+    <div class="game-card" *ngFor="let game of topGames" [routerLink]="['/details', game.game_id]">
+      <img [src]="apiUrl + '/uploads/' + game.image" alt="{{game.name}}">
+      <div class="detal">
+        <p>{{game.name}}</p>
+      </div>
+    </div>
+  </div>
   <h2>| ประเภทเกม</h2>
   <div *ngFor="let type_name of this.gamestype">
     <h3>{{type_name.type_name}}</h3>
